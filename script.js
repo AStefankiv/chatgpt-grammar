@@ -13,8 +13,8 @@ if (!process.env.API_KEY) {
 const configuration = new Configuration({
   apiKey: process.env.API_KEY
 });
+
 const openai = new OpenAIApi(configuration);
-console.log(process.env.API_KEY)
 
 const userInterface = readline.createInterface({
   input: process.stdin,
