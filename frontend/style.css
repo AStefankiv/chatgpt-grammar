@@ -84,3 +84,22 @@ body {
   max-width: 100%;
   text-align: left;
 }
+
+.corrected-text {
+  color: green;
+  font-weight: bold;
+}
+
+.explanation {
+  color: gray;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.loading-message,
+.error-message {
+  color: red;
+  align-self: center;
+  margin-bottom: 15px;
+  font-style: italic;
+}

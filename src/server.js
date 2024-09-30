@@ -1,5 +1,4 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import { config } from 'dotenv';
 import { OpenAIApi, Configuration } from 'openai';
 import path from 'path';
@@ -22,7 +21,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 
 // Middleware to parse JSON bodies
-app.use(bodyParser.json());
+app.use(express.json());
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,18 +30,35 @@ app.use(express.static(path.join(__dirname, '..', 'frontend')));
 // API endpoint to handle chat messages
 app.post('/api/chat', async (req, res) => {
   const { message } = req.body;
-  console.log('Message:', message);
 
   try {
     const response = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: message }],
-    });
+      messages: [
+        { role: 'system',
+        content: `You are an assistant that corrects grammatical mistakes in the user's text. Respond **exactly** in the following format:
+
+Corrected Sentence: <corrected sentence>
+Explanation: <brief explanation of the corrections you made>
+
+Do not include any additional text or deviation from the format.`
+      },
+      {
+        role: 'user',
+        content: message,
+      }
+    ],
+  });
 
     res.json({ reply: response.data.choices[0].message.content });
   } catch (error) {
-    console.error('Error communicating with OpenAI:', error.response ? error.response.data : error.message);
-    res.status(500).json({ error: 'Failed to communicate with OpenAI' });
+    console.error('Error communicating with OpenAI:',
+      error.response ? error.response.data : error.message
+    );
+    res.status(500).json({
+      error: 'Failed to communicate with OpenAI',
+      details: error.response ? error.response.data : error.message
+    });
   }
 });
 
