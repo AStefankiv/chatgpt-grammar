@@ -5,7 +5,9 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #e2e4bc;
+  /* background-color: #e2e4bc; */
+  background-image: url('https://assets.nationbuilder.com/votelibraries/pages/5629/features/original/crumpled-paper-1280x720.jpeg?1664116904');
+  background-size: cover;
 }
 
 #main-container {
@@ -13,6 +15,12 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+
+#main-container p {
+  font-style: bold;
+  font-size: 20px;
+  margin-top: -5px;
 }
 
 #chat-container {
