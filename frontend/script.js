@@ -51,7 +51,7 @@ document.getElementById('chat-form').addEventListener('submit', async (e) => {
         explanation = 'No explanation provided.';
       }
 
-      const correctedTextElement = document.createElement('div');      
+      const correctedTextElement = document.createElement('div');
       correctedTextElement.textContent = correctedText;
       correctedTextElement.className = 'corrected-text';
       
