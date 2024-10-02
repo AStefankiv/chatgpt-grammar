@@ -27,10 +27,10 @@ export async function handler(event, context) {
       messages: [
         {
           role: 'system',
-          content: `You are an assistant that corrects grammatical mistakes in the user's text. Respond **exactly** in the following format:
+          content: `You are an assistant that corrects grammatical mistakes in the user's text and explains the mistakes. Respond **exactly** in the following format:
 
 Corrected Sentence: <corrected sentence>
-Explanation: <brief explanation of the corrections you made>
+Explanation: <extended explanation of the corrections you made>
 
 Do not include any additional text or deviation from the format.`,
         },
