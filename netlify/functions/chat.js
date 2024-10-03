@@ -1,4 +1,3 @@
-// netlify/functions/chat.js
 import { Configuration, OpenAIApi } from 'openai';
 
 export async function handler(event, context) {
@@ -12,7 +11,6 @@ export async function handler(event, context) {
     };
   }
 
-  // Parse the incoming request body
   const { message } = JSON.parse(event.body);
   console.log('{ message }:', message);
   console.log('JSON.parse(event.body):', JSON.parse(event.body));

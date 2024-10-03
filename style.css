@@ -112,3 +112,46 @@ body {
   margin-bottom: 15px;
   font-style: italic;
 }
+
+#input-mode-toggle {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.mode-button {
+  flex: 1;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: none;
+}
+
+.mode-button.active {
+  background-color: #007BFF;
+  color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+#chat-form {
+  display: flex;
+  align-items: center;
+}
+
+#user-input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+#voice-input-button {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+#send-button {
+  padding: 10px 20px;
+}

@@ -12,8 +12,13 @@
     <p>Enter a sentence to check if it's correct!</p>
   <div id="chat-container">
     <div id="chat-box">
+      <div id="input-mode-toggle">
+        <button id="text-mode-button" class="mode-button active">TEXT</button>
+        <button id="voice-mode-button" class="mode-button">VOICE</button>
+      </div>
     <form id="chat-form">
       <input type="text" id="user-input" placeholder="Type your message here..." required>
+      <button type="button" id="voice-input-button" class="hidden">🎤 Start Speaking</button>
       <button type="submit">Send</button>
     </form>
   </div>
