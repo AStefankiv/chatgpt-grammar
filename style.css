@@ -1,3 +1,11 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   font-family: Arial, sans-serif;
   display: flex;
@@ -5,9 +13,11 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  padding: 0;
   /* background-color: #e2e4bc; */
   background-image: url('https://assets.nationbuilder.com/votelibraries/pages/5629/features/original/crumpled-paper-1280x720.jpeg?1664116904');
   background-size: cover;
+  background-position: center;
 }
 
 #main-container {
@@ -154,4 +164,19 @@ body {
 
 #send-button {
   padding: 10px 20px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 15px;
+  width: 100%;
+}
+
+footer a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
