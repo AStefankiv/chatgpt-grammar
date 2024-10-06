@@ -5,5 +5,8 @@ A chat gpt api-powered web application designed to correct your English sentence
 
 You can enter an English sentence either by typing or using voice input. Once submitted, the app will provide a thorough analysis of any errors and a detailed explanation of the mistakes to help you improve your English.
 
+## Typing
 ![Image 1](./media/grammar_gpt_1.png)
+
+## Voice input
 ![Image 2](./media/grammar_gpt_2.png)
