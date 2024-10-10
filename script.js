@@ -176,4 +176,9 @@ function addToHistory(input) {
   const historyItem = document.createElement('li');
   historyItem.textContent = input;
   historyList.appendChild(historyItem);
+
+  if  (searchHistory.kength > 10) {
+    searchHistory.shift();
+    historyList.removeChild(historyList.firstChild);
+  }
 }
