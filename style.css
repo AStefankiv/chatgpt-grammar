@@ -166,6 +166,36 @@ body {
   padding: 10px 20px;
 }
 
+#history-container {
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  padding: 20px;
+}
+
+#history-container h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+#history-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0 0;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+#history-list li {
+  padding: 5px;
+  background-color: #e0e0e0;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
 footer {
   text-align: center;
   margin-top: 50px;

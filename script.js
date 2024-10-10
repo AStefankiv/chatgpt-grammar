@@ -1,6 +1,7 @@
 let inputMode = 'TEXT';
 let recognition;
 let isRecording = false;
+let searchHistory = [];
 
 const textModeButton = document.getElementById('text-mode-button');
 const voiceModeButton = document.getElementById('voice-mode-button');
@@ -8,6 +9,7 @@ const userInputField = document.getElementById('user-input');
 const voiceInputButton = document.getElementById('voice-input-button');
 const sendButton = document.getElementById('send-button');
 const chatBox = document.getElementById('chat-box');
+const historyList = document.getElementById('history-list');
 
 textModeButton.addEventListener('click', () => {
   inputMode = 'TEXT';
@@ -94,6 +96,8 @@ document.getElementById('chat-form').addEventListener('submit', async (e) => {
 
   if (!userInput) return;
 
+  addToHistory(userInput);
+
   const userMessage = document.createElement('div');
   userMessage.textContent = userInput;
   userMessage.className = 'user-message';
@@ -165,3 +169,11 @@ document.getElementById('chat-form').addEventListener('submit', async (e) => {
 
   chatBox.scrollTop = chatBox.scrollHeight;
 });
+
+function addToHistory(input) {
+  searchHistory.push(input);
+
+  const historyItem = document.createElement('li');
+  historyItem.textContent = input;
+  historyList.appendChild(historyItem);
+}
