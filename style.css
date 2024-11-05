@@ -2,7 +2,6 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-
   display: flex;
   flex-direction: column;
 }
@@ -24,7 +23,8 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-  background-color: white;
+  align-items: center;
+  background-color: rgb(189, 208, 249);
   padding: 1rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -34,11 +34,15 @@ header {
   z-index: 1000;
 }
 
-header h1 {
-  margin: 0;
-  color: #004186;
+#logo-header {
   margin-left: 0;
   padding-left: 0;
+}
+
+#logo {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 
 header nav {
@@ -50,41 +54,55 @@ header nav ul {
   display: flex;
   justify-items: start;
   list-style: none;
-  margin: 1rem 0 0;
+  margin: 0;
   gap: 3rem;
   padding-right: 5rem;
 }
 
-header nav a {
+header nav ul li {
+  position: relative;
+}
+
+/* Override Bootstrap button styles */
+header nav ul li .btn-primary {
+  background-color: transparent;
+  border: 2px solid #007bff;
   color: #007bff;
-  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
-header nav a:hover {
-  text-decoration: underline;
+header nav ul li .btn-primary:hover {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
 }
 
-/* Add responsive adjustments */
+header nav ul li .btn-primary:active {
+  background-color: #0056b3;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
 @media (max-width: 768px) {
-  #main-container {
-    padding: 5rem 1rem 4rem;
+  header nav ul {
+    gap: 0.8rem;
+    padding-right: 2rem;
   }
   
-  header nav ul {
-    gap: 1rem;
+  header nav ul li .btn-primary {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
   }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 500px) {
   header {
     flex-direction: column;
     align-items: center;
     padding: 0.5rem;
-  }
-  
-  header h1 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
   }
   
   header nav {
@@ -95,9 +113,13 @@ header nav a:hover {
   header nav ul {
     padding: 0;
     margin: 0;
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: space-around;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  header nav ul li .btn-primary {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -106,6 +128,8 @@ header nav a:hover {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  margin-top: 20px;
+  margin-bottom: 60px;
 }
 
 #main-container p {
@@ -124,7 +148,7 @@ header nav a:hover {
 
 #chat-box {
   padding: 20px;
-  height: 300px;
+  height: 500px;
   overflow-y: auto;
   border-bottom: 1px solid #ccc;
   color:#004186;
@@ -276,6 +300,79 @@ header nav a:hover {
   border-radius: 4px;
   font-size: 14px;
 }
+
+
+#language-selector {
+  max-width: 400px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 80px;
+}
+
+#language-selector label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.language-option {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.language-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.language-option.active {
+  background-color: #e9ecef;
+  border: 2px solid #0d6efd;
+}
+
+
+#language-selector img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  #language-selector {
+    max-width: 300px;
+    margin: 15px auto;
+  }
+
+  #language-selector img {
+    width: 30px;
+    height: 30px;
+  }
+
+  #language-selector .language-option {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  #language-selector {
+    margin-bottom: 15px;
+    margin-top: 100px;
+  }
+  
+  #main-container {
+    margin-top: 15px;
+  }
+}
+
 
 footer {
   background-color: white;

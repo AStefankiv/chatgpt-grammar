@@ -2,6 +2,7 @@ let inputMode = 'TEXT';
 let recognition;
 let isRecording = false;
 let searchHistory = [];
+let selectedLanguage = 'en-US';
 
 const textModeButton = document.getElementById('text-mode-button');
 const voiceModeButton = document.getElementById('voice-mode-button');
@@ -10,6 +11,12 @@ const voiceInputButton = document.getElementById('voice-input-button');
 const sendButton = document.getElementById('send-button');
 const chatBox = document.getElementById('chat-box');
 const historyList = document.getElementById('history-list');
+const languageOptions = document.querySelectorAll('.language-option');
+
+const activeOption = document.querySelector('.language-option.active');
+if (activeOption) {
+  selectedLanguage = activeOption.getAttribute('data-lang');
+}
 
 textModeButton.addEventListener('click', () => {
   inputMode = 'TEXT';
@@ -29,6 +36,18 @@ voiceModeButton.addEventListener('click', () => {
   userInputField.required = false;
 });
 
+languageOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    selectedLanguage = option.getAttribute('data-lang');
+    languageOptions.forEach(opt => {
+      opt.classList.remove('active');
+      opt.setAttribute('aria-selected', 'false');
+    });
+    option.classList.add('active');
+    option.setAttribute('aria-selected', 'true');
+  });
+});
+
 voiceInputButton.addEventListener('click', () => {
   if (isRecording) {
     stopRecording();
@@ -45,7 +64,7 @@ function startRecording() {
   }
 
   recognition = new SpeechRecognition();
-  recognition.lang = 'en-US';
+  recognition.lang = selectedLanguage;
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
 
@@ -54,6 +73,7 @@ function startRecording() {
 
   voiceInputButton.textContent = 'Listening...';
   voiceInputButton.disabled = true;
+  voiceInputButton.classList.add('listening');
 
   recognition.onresult = (event) => {
     const transcript = event.results[0][0].transcript.trim();
@@ -65,12 +85,14 @@ function startRecording() {
     isRecording = false;
     voiceInputButton.textContent = '🎤 Start Speaking';
     voiceInputButton.disabled = false;
+    voiceInputButton.classList.remove('listening');
   };
 
   recognition.onerror = (event) => {
     isRecording = false;
     voiceInputButton.textContent = '🎤 Start Speaking';
     voiceInputButton.disabled = false;
+    voiceInputButton.classList.remove('listening');
     alert('Error occurred in speech recognition: ' + event.error);
   };
 }
@@ -81,20 +103,21 @@ function stopRecording() {
     isRecording = false;
     voiceInputButton.textContent = '🎤 Start Speaking';
     voiceInputButton.disabled = false;
+    voiceInputButton.classList.remove('listening');
   }
 }
+
+document.getElementById('year').textContent = new Date().getFullYear();
 
 document.getElementById('chat-form').addEventListener('submit', async (e) => {
   e.preventDefault();
 
   let userInput = userInputField.value.trim();
 
-  if (inputMode === 'VOICE' && userInput === '') {
-    alert('Please speak into the microphone.');
+  if (!userInput) {
+    alert('Please enter a message or use voice input.');
     return;
   }
-
-  if (!userInput) return;
 
   addToHistory(userInput);
 
@@ -114,7 +137,7 @@ document.getElementById('chat-form').addEventListener('submit', async (e) => {
     const response = await fetch('/.netlify/functions/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: userInput }),
+      body: JSON.stringify({ message: userInput, language: selectedLanguage }),
     });
 
     const data = await response.json();
@@ -177,7 +200,7 @@ function addToHistory(input) {
   historyItem.textContent = input;
   historyList.appendChild(historyItem);
 
-  if  (searchHistory.kength > 10) {
+  if (searchHistory.length > 10) {
     searchHistory.shift();
     historyList.removeChild(historyList.firstChild);
   }

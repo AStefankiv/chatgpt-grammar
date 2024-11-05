@@ -11,9 +11,9 @@ export async function handler(event, context) {
     };
   }
 
-  const { message } = JSON.parse(event.body);
-  console.log('{ message }:', message);
-  console.log('JSON.parse(event.body):', JSON.parse(event.body));
+  const { message, language } = JSON.parse(event.body); // Receive language parameter here
+  console.log('Received message:', message);
+  console.log('Selected language:', language);
 
   const configuration = new Configuration({
     apiKey: API_KEY,
@@ -21,18 +21,25 @@ export async function handler(event, context) {
 
   const openai = new OpenAIApi(configuration);
 
+  const languageInstructions = {
+    'en-US': 'correct grammatical mistakes in English',
+    'uk-UA': 'correct grammatical mistakes in Ukrainian',
+    'fr-FR': 'correct grammatical mistakes in French',
+    'es-ES': 'correct grammatical mistakes in Spanish',
+  };
+
+  const languageInstruction = languageInstructions[language] || languageInstructions['en-US'];
+
   try {
     const response = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       messages: [
         {
           role: 'system',
-          content: `You are an assistant that corrects grammatical mistakes in the user's text and explains the mistakes. Respond **exactly** in the following format:
-
-Corrected Sentence: <corrected sentence>
-Explanation: <extended explanation of the corrections you made>
-
-Do not include any additional text or deviation from the format.`,
+          content: `You are an assistant that ${languageInstruction} in the user's text and explains the mistakes. Respond **exactly** in the following format:
+                    Corrected Sentence: <corrected sentence>
+                    Explanation: <extended explanation of the corrections you made>
+                    Do not include any additional text or deviation from the format. Respond in the same language as the user's input.`,
         },
         {
           role: 'user',
