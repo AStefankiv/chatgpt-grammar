@@ -31,6 +31,7 @@ header {
   top: 0;
   left: 0;
   z-index: 1000;
+
 }
 
 #logo-header {
@@ -97,7 +98,7 @@ header nav ul li .btn-primary:active {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   header {
     flex-direction: column;
     align-items: center;
@@ -129,6 +130,7 @@ header nav ul li .btn-primary:active {
   width: 100%;
   margin-top: 20px;
   margin-bottom: 60px;
+
 }
 
 #main-container p {
@@ -151,6 +153,13 @@ header nav ul li .btn-primary:active {
   overflow-y: auto;
   border-bottom: 1px solid #ccc;
   color:#004186;
+}
+
+@media (max-width: 768px) {
+  #chat-container {
+    width: 90%;
+    margin-bottom: 10%;
+  }
 }
 
 #chat-form {
@@ -308,7 +317,7 @@ header nav ul li .btn-primary:active {
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-top: 80px;
+  margin-top: 6.5%;
 }
 
 #language-selector label {
@@ -336,7 +345,6 @@ header nav ul li .btn-primary:active {
   border: 2px solid #0d6efd;
 }
 
-
 #language-selector img {
   width: 40px;
   height: 40px;
@@ -345,10 +353,12 @@ header nav ul li .btn-primary:active {
   display: block;
 }
 
+/* Updated media queries for language selector */
 @media (max-width: 480px) {
   #language-selector {
-    max-width: 300px;
-    margin: 15px auto;
+    max-width: 350px;
+    margin: 150px auto 15px auto; /* Increased top margin */
+    padding: 12px;
   }
 
   #language-selector img {
@@ -357,18 +367,55 @@ header nav ul li .btn-primary:active {
   }
 
   #language-selector .language-option {
-    padding: 10px;
+    padding: 3px;
+  }
+  
+  /* Adjust main container spacing */
+  #main-container {
+    margin-top: 10px;
+
+    /* margin-bottom: 20%; */
   }
 }
 
-@media (max-width: 768px) {
+/* Specific adjustments for very small screens */
+@media (max-width: 360px) {
+  #language-selector {
+    margin-top: 140px; /* Even more top margin for smallest screens */
+    max-width: 300px;
+    padding: 10px;
+  }
+  
+  #language-selector label {
+    font-size: 0.9rem;
+  }
+}
+
+/* Adjusted tablet breakpoint */
+@media (min-width: 481px) and (max-width: 768px) {
   #language-selector {
     margin-bottom: 15px;
-    margin-top: 100px;
+    margin-top: 150px;
+    max-width: 450px;
+    padding: 10px;
   }
   
   #main-container {
     margin-top: 15px;
+  }
+}
+
+/* Landscape mode adjustments */
+@media (max-height: 480px) and (orientation: landscape) {
+  #language-selector {
+    margin-top: 80px;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  
+  #language-selector img {
+    width: 32px;
+    height: 32px;
   }
 }
 
