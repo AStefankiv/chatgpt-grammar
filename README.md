@@ -8,5 +8,8 @@ You can enter an English sentence either by typing or using voice input. Once su
 ## Typing
 ![Image 1](./media/grammar_gpt_1.png)
 
-## Voice input
+## Switching languages
 ![Image 2](./media/grammar_gpt_2.png)
+
+## Voice input
+![Image 2](./media/grammar_gpt_3.png)

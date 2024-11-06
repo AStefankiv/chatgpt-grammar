@@ -153,7 +153,7 @@ document.getElementById('chat-form').addEventListener('submit', async (e) => {
       let explanation = '';
 
       const correctedMatch = reply.match(/Corrected Sentence:\s*(.+)\s*Explanation:/s);
-      const explanationMatch = reply.match(/Explanation:\s*(.+)/s);
+      const explanationMatch = reply.match(/Explanation:\s*(.+)/s);      
 
       if (correctedMatch && explanationMatch) {
         correctedText = correctedMatch[1].trim();

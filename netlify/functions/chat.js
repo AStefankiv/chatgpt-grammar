@@ -16,7 +16,7 @@ export async function handler(event, context) {
   console.log('Selected language:', language);
 
   const configuration = new Configuration({
-    apiKey: API_KEY,
+    apiKey: process.env.API_KEY,
   });
 
   const openai = new OpenAIApi(configuration);
@@ -41,6 +41,7 @@ export async function handler(event, context) {
                     Explanation: <extended explanation of the corrections you made>
                     Do not include any additional text or deviation from the format. Respond in the same language as the user's input.`,
         },
+        
         {
           role: 'user',
           content: message,
