@@ -359,8 +359,6 @@ header nav ul li .btn-primary:active {
     max-width: 350px;
     margin: 50% auto 15px auto; /* Increased top margin */
     padding: 12px;
-
-    /* padding-top: 10%; */
   }
 
   #language-selector img {
@@ -397,7 +395,7 @@ header nav ul li .btn-primary:active {
 @media (min-width: 481px) and (max-width: 768px) {
   #language-selector {
     margin-bottom: 15px;
-    margin-top: 150px;
+    margin-top: 180px;
     max-width: 450px;
     padding: 10px;
   }
